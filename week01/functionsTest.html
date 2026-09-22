@@ -1,41 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Function Tests</title>
 </head>
+
 <body>
     <script>
+        function one(condition) {
+            document.writeln(String(condition))
+        }
 
-        // function fun1()    { return 1; }
+        one(1 === 1);
+        function fun1() { return 1; }
+        one(fun1(1) === 1);
+        one(fun1(42) === 1);
+
+        function fun2() { return 1; }
+        function fun2(arg) { return arg; }
+
+        one(fun2() !== 1);
+        one(fun2() === undefined);
+        one(fun2(42) === 42);
+
+        function noReturn() { 1; }
+        const noReturn2 = () => { 1; };
+        const noReturn3 = () => 1;
+
+        one(noReturn() !== 1);
+        one(noReturn2() !== 1);
+        one(noReturn3() === 1);
         //
-        // document.writeln( fun1()   === 1 );
-        // document.writeln( fun1(42) === 1 );
+        const myfun = fun1;
+        const funs = [null, undefined, fun1, fun2];
+
+        one(myfun() === 1);
+        one(funs[2]() === 1);
         //
-        // function fun2()    { return 1; }
-        // function fun2(arg) { return arg; }
-        //
-        // document.writeln( fun2() !== 1  );
-        // document.writeln( fun2() === undefined );
-        // document.writeln( fun2(42) === 42 );
-        //
-        // function noReturn()    { 1; }
-        // const noReturn2 = () => { 1; };
-        // const noReturn3 = () => 1;
-        //
-        // document.writeln( noReturn() !== 1 );
-        // document.writeln( noReturn2() !== 1 );
-        // document.writeln( noReturn3() === 1 );
-        //
-        // const myfun = fun1;
-        // const funs = [null, undefined, fun1, fun2];
-        // //
-        // document.writeln( myfun() === 1 );
-        // document.writeln( funs[2]() === 1 );
-        //
-        // function doit(whatToDo) {
-        //     return function bla(arg) { return whatToDo(arg); }
-        // }
+        function doit(whatToDo) {
+             return function bla(arg) { return whatToDo(arg); }
+         }
         //
         // document.writeln( doit(fun1)(10) === 1 );
         // document.writeln( doit(fun2)(10) === 10 );
@@ -51,14 +56,5 @@
 
     </script>
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
